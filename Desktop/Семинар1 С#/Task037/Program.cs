@@ -40,24 +40,19 @@ void PrintArray(int [] array)// вывод массива в консоль
 
 int[] MakeArray(int[] array)
 {
-    int size = array.Length % 2 != 0 ? array.Length / 2 + 1 : array.Length / 2;
+    int size = array.Length % 2 != 0 ? array.Length / 2 + 1 : array.Length / 2; // размер нового массива
     int[] resArray = new int[size];
+
     for (int i = 0; i < resArray.Length; i++)
     {
-        if (i == resArray.Length - 1 && array.Length % 2 == 1)
-        {
-            resArray[i] = array[i];
-        }
-        else
-        {
-            resArray[i] = array[i] * array[array.Length - i - 1];
-        }
-
+        resArray[i] = array[i] * array[array.Length - i - 1];
     }
+    
+    if (array.Length % 2 == 1) resArray[size - 1] = array[array.Length / 2];
     return resArray;
 }
 
-int[] arr = CreateArrayRndInt(5, 0, 10);
+int[] arr = CreateArrayRndInt(8, 0, 10);
 PrintArray(arr);
 int[] newArray = MakeArray(arr);
 PrintArray(newArray);
