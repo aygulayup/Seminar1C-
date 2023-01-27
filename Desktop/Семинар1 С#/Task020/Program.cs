@@ -10,22 +10,18 @@ int y1 = InsertPositon("Введите координату У первой то
 int x2 = InsertPositon("Введите координату X второй точки:"); 
 int y2 = InsertPositon("Введите координату Y второй точки:");
 
-int InsertPositon(string text)
-{
-    Console.WriteLine(text);
-    int pos = Convert.ToInt32(Console. ReadLine());
-    return pos;
-}
-
-// int distance = (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
-// double d = Math.Sqrt(distance);
-// double dRes = Math.Round(d, 2, MidpointRounding.ToZero);
-
 double distance = Distance(x1, y1, x2, y2);
 double disToZero = Math.Round(distance, 2, MidpointRounding.ToZero);
 
 Console.WriteLine(disToZero);
 
+
+int InsertPositon(string text)
+{
+    Console.Write(text);
+    int pos = Convert.ToInt32(Console. ReadLine());
+    return pos;
+}
 
 double Distance(int xa, int ya, int xb, int yb)
 {
