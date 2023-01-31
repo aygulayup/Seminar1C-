@@ -1,20 +1,21 @@
-﻿// Задача 46: 
-// Задайте двумерный массив размером m * n, 
-// заполненный случайными целыми числами.
+﻿// Задача 48: Задайте двумерный массив размера m на n, 
+// каждый элемент в массиве находится по формуле: Amn = m+n.
+// Выведите полученный массив на экран.
 // m = 3, n = 4.
+// 0123
+// 1234
+// 2345
 
-int[,] CreateMatrixRndInt(int rows, int colomns, int min, int max) //создание и заполнение массива случайными элементами
+int[,] CreateMatrixRndInt(int rows, int colomns) 
 {
-    int [,] matrix = new int[rows, colomns]; // новое место памяти для массива
-    Random rnd = new Random(); // новое место памяти для элемента класса Random
+    int [,] matrix = new int[rows, colomns]; 
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
     {
-        matrix[i, j] = rnd.Next(min, max + 1);
+        matrix[i, j] = i +j;
     }
     }
-    
     return matrix;
 }
 
@@ -32,5 +33,5 @@ void PrintMatrix(int [,] matrix)// вывод массива в консоль
     Console.WriteLine("]");
     }
 }
-int[,] arr2D = CreateMatrixRndInt(3, 4, 0, 100);
+int[,] arr2D = CreateMatrixRndInt(3, 4);
 PrintMatrix(arr2D);
