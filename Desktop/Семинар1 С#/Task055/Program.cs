@@ -1,7 +1,7 @@
-﻿// Задача 46: 
-// Задайте двумерный массив размером m * n, 
-// заполненный случайными целыми числами.
-// m = 3, n = 4.
+﻿// Задача 55: Задайте двумерный массив. 
+// Напишите программу, которая заменяет строки на столбцы. 
+// В случае, если это невозможно, программа 
+// должна вывести сообщение для пользователя.
 
 int[,] CreateMatrixRndInt(int rows, int colomns, int min, int max) //создание и заполнение массива случайными элементами
 {
@@ -14,7 +14,6 @@ int[,] CreateMatrixRndInt(int rows, int colomns, int min, int max) //созда�
         matrix[i, j] = rnd.Next(min, max + 1);
     }
     }
-    
     return matrix;
 }
 
@@ -32,5 +31,31 @@ void PrintMatrix(int [,] matrix)// вывод массива в консоль
     Console.WriteLine("]");
     }
 }
-int[,] arr2D = CreateMatrixRndInt(3, 4, 0, 100);
+
+void ReplaseRowsColomns(int[,] matrix)
+{
+    int count = 0;
+    for (int i = 1; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            count = matrix[i, j];
+            matrix[i, j] = matrix[j, i];
+            matrix[j, i] = count;
+        }
+    }
+}
+
+int[,] arr2D = CreateMatrixRndInt(3, 3, 0, 10);
 PrintMatrix(arr2D);
+Console.WriteLine();
+if(arr2D.GetLength(0) == arr2D.GetLength(1))
+{
+    ReplaseRowsColomns(arr2D);
+    PrintMatrix(arr2D);
+}
+else
+{
+    Console.WriteLine("Замена строк на столбцы невозможна");
+}
+

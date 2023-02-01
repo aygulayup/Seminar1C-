@@ -29,7 +29,7 @@ void PrintMatrix(int [,] matrix)// вывод массива в консоль
     Console.Write("["); //вывод массива на экран в [скобках]
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
-        if(i < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j], 4}, "); // вывод эл-ов массива через запятую
+        if(j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j], 4}, "); // вывод эл-ов массива через запятую
         else Console.Write($"{matrix[i, j], 4} "); // обратиться к последнему элементу массива array[^1]
     }
     Console.WriteLine("]");
