@@ -41,7 +41,7 @@ void PrintMatrix(int [,] matrix)// вывод массива в консоль
     }
 }
 
-(int row, int column, int minValue) IndexMinValue(int[,] matrix) //
+(int row, int column, int minValue) IndexMinValue(int[,] matrix) //кортежи
 {
     int minValueRow = 0;
     int minValueColumn = 0;
@@ -62,8 +62,30 @@ void PrintMatrix(int [,] matrix)// вывод массива в консоль
     return (minValueRow, minValueColumn, minValue);
 }
 
+int[,] RemoveCrossRowColumn(int[,] matrix, int iMin, int jMin)
+{
+    int[,] resultMatrix = new int[matrix.GetLength(0)-1, matrix.GetLength(1) - 1];
+    int m = 0; //счетчики для прохождения по строкам и столбцам исходного массива
+    int n = 0;
+    for (int i = 0; i < resultMatrix.GetLength(0); i++)
+    {
+        if(m == iMin) m++;
+        for (int j = 0; j < resultMatrix.GetLength(1); j++)
+        {
+            if(n == jMin) n++;
+            resultMatrix[i, j] = matrix[m, n];
+            n++;
+        }
+        m++;
+        n = 0; //обнуляем n для новой матрицы, чтобы проходить по всем m n
+    }
+    return resultMatrix;
+}
+
 int[,] arr2D = CreateMatrixRndInt(3, 3, 0, 10);
 PrintMatrix(arr2D);
 Console.WriteLine();
 var indexMinValue = IndexMinValue(arr2D);
 Console.WriteLine(indexMinValue.row + "\n" + indexMinValue.column + "\n" + indexMinValue.minValue);// "\n" перевод на след.строку
+int[,] resMatrix = RemoveCrossRowColumn(arr2D,  indexMinValue.row, indexMinValue.column);
+PrintMatrix(resMatrix);
